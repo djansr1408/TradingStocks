@@ -2,19 +2,15 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import random
+from config import config
 
-config = {'input_length': 3,
-          'num_time_steps': 20,
-          'batch_size': 50,
-          'train_ratio': 0.9
-         }
 
 class Dataset:
     def __init__(self, data, config):
         self.data = data
         self.input_length = config['input_length']
         self.num_time_steps = config['num_time_steps']
-        self.train_ratio = config['train_test_ratio']
+        self.train_ratio = config['train_ratio']
         self._format_data()
 
     def _format_data(self):
@@ -33,6 +29,7 @@ class Dataset:
         y = np.array([self.normalized_data[i + self.num_time_steps]
                       for i in range(len(self.normalized_data)-self.num_time_steps)])
         num_train = int(self.train_ratio * y.shape[0])
+        self.num_train = num_train
         self.X_train = X[:num_train]
         self.y_train = y[:num_train]
         self.X_test = X[num_train:]
@@ -48,6 +45,13 @@ class Dataset:
             X_batch = self.X_train[i*batch_size:(i+1)*batch_size]
             y_batch = self.y_train[i*batch_size:(i+1)*batch_size]
             yield X_batch, y_batch
+
+
+def load_data(path):
+    df = pd.read_csv(path)
+    close_prices = df['Close'].values.tolist()
+    close_prices = np.array(close_prices)
+    return close_prices
 
 
 if __name__ == "__main__":
@@ -70,7 +74,6 @@ if __name__ == "__main__":
     #plt.show()
 
     dataset = Dataset(close_prices, config=config)
-    dataset.format_data()
 
 
 
