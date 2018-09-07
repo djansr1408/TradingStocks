@@ -10,5 +10,7 @@ config = {'input_length': 3,
           'num_epochs_before_decay': 2,
           'decay_rate': 0.7,
           'num_epochs': 20,
-          'test_model_every': 1
+          'test_model_every': 1,
+          'log_dir': "\log",
+          'model_name': "checkpoint_00"
          }

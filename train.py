@@ -1,6 +1,7 @@
 import tensorflow as tf
 import numpy as np
 import matplotlib.pyplot as plt
+import os
 
 import model
 import dataset
@@ -94,3 +95,10 @@ if __name__ == "__main__":
             plt.plot(pred_averaged)
             plt.title('Predictions averaged')
             plt.show()
+
+            checkpoint_dir = os.path.join(os.getcwd(), config['log_dir'])
+            if not os.path.exists(checkpoint_dir):
+                os.mkdir(checkpoint_dir)
+
+            saver = tf.train.Saver()
+            saver.save(sess, os.path.join(checkpoint_dir, config['model_name'] + '.ckpt'))
