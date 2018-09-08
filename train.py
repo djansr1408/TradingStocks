@@ -97,6 +97,7 @@ if __name__ == "__main__":
             plt.show()
 
             checkpoint_dir = os.path.join(os.getcwd(), config['log_dir'])
+            print(checkpoint_dir)
             if not os.path.exists(checkpoint_dir):
                 os.mkdir(checkpoint_dir)
 

@@ -11,6 +11,6 @@ config = {'input_length': 3,
           'decay_rate': 0.7,
           'num_epochs': 20,
           'test_model_every': 1,
-          'log_dir': "\log",
+          'log_dir': "log",
           'model_name': "checkpoint_00"
          }
