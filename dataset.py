@@ -17,7 +17,8 @@ class Dataset:
         # split data to groups of equal number of samples
         data_grouped = [np.array(self.data[i*self.input_length:(i+1)*self.input_length])
                         for i in range(len(self.data)//self.input_length)]
-
+        self.data_grouped = np.array(data_grouped)
+        print("data grouped", self.data_grouped.shape)
         # normalize data
         self.normalized_data = []
         self.normalized_data.append(data_grouped[0] / data_grouped[0][0] - 1.0)
@@ -29,6 +30,17 @@ class Dataset:
         y = np.array([self.normalized_data[i + self.num_time_steps]
                       for i in range(len(self.normalized_data)-self.num_time_steps)])
         num_train = int(self.train_ratio * y.shape[0])
+
+        self.normalized_data_last = []
+        data_grouped_last = self.data_grouped[num_train:]
+        self.data_grouped_last = data_grouped_last
+        print("self.data_frouped_last: ", self.data_grouped_last.shape)
+        self.normalized_data_last.append(data_grouped_last[0] / data_grouped_last[0][0] - 1.0)
+        for i in range(1, len(data_grouped_last)):
+            self.normalized_data_last.append(data_grouped_last[i] / data_grouped_last[i - 1][-1] - 1.0)
+        self.y_last = np.array([self.normalized_data_last[i + self.num_time_steps]
+                      for i in range(len(self.normalized_data_last) - self.num_time_steps)])
+
         self.num_train = num_train
         self.X_train = X[:num_train]
         self.y_train = y[:num_train]
@@ -56,6 +68,7 @@ def load_data(path):
 
 if __name__ == "__main__":
     df = pd.read_csv('SPY.csv')
+    print(df.head())
     close_prices = df['Close'].values.tolist()
     close_prices = np.array(close_prices)
     # plt.plot(close_prices)

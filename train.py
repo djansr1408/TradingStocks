@@ -15,7 +15,9 @@ if __name__ == "__main__":
                                 name='inputs')
         targets = tf.placeholder(dtype=tf.float32, shape=[None, config['input_length']], name='targets')
         is_training = tf.placeholder(dtype=tf.bool, name='is_training')
-
+        print(inputs)
+        print(targets)
+        print(is_training)
         # create LSTM nn model
         predictions = model.create_model(inputs, config)
         # calculate total loss
@@ -76,10 +78,12 @@ if __name__ == "__main__":
             plt.show()
 
             plt.plot(lr_values)
+            plt.title('Learning rate')
             plt.show()
 
-            plt.plot(test_losses)
-            plt.plot(train_losses_eval)
+            plt.plot(test_losses, 'r')
+            plt.plot(train_losses_eval, 'b')
+            plt.legend(['Validation loss', 'Train loss'])
             plt.show()
 
             pred = np.array(pred)

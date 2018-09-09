@@ -43,7 +43,8 @@ def create_model(inputs, config, is_training=True):
                             dtype=tf.float32, initializer=tf.truncated_normal_initializer(), trainable=True)
         b = tf.get_variable(name="biases", shape=[config['input_length']], dtype=tf.float32,
                             initializer=tf.zeros_initializer(), trainable=True)
-        outputs = tf.add(tf.matmul(last_time_step, w), b)
+        outputs = tf.add(tf.matmul(last_time_step, w), b, name='outputs')
+        print("Outputs ", outputs)
     return outputs
 
 
