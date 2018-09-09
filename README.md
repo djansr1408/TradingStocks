@@ -1,2 +1,2 @@
 # TradingStocks
-Implementing trading strategy using LSTM neural network
+Implementing trading strategy using LSTM neural network.
