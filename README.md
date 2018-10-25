@@ -1,4 +1,4 @@
-# Trading Stocks using LSTM
+# Trading stocks using LSTM
  This project is about predicting stock prices using LSTM neural network and implementing simple trading strategy.
 
 ## Introduction
