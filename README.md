@@ -19,7 +19,7 @@ Figure 1: Data for period from 1st Jan 2010 to 31st Dec 2015
 
 <p align="center">
 <img style="float: left;margin:0 auto; " align="center" src="./images/datagraphic.png">   
-<div style="float: center;" >Figure 2: CLOSE prices data </div>
+Figure 2: CLOSE prices data
 </p>
 
 
