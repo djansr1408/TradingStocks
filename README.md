@@ -103,12 +103,12 @@ Figure 9: Averaged predictions on test data (blue color real values, red predict
 </div>
 </p>
 
-Total profit on the train data + validation data:  750 $
-Total profit on the validation data: -1073 $
-Total profit on the test data: -1192 $
+Total profit on the train data + validation data:  750 $<br/>
+Total profit on the validation data: -1073 $<br/>
+Total profit on the test data: -1192 $<br/>
 For all these n = 2 which means how many steps ahead to look for prediction.
 
 ## Conclusion
-This project showed that approach with LSTM recurrent neural networks could have bigger impact in predicting stock prices. However, since trading data is not only dependent on its historical value, but instead on many other factors from real world, these results are not so good. The right data for this kind of prediction should contain newsletter articles that reflects happening in the world, social and policy aspects, sentiment of the environment and many other so it can give accurate results. Also, there are needed some improvements in the architecture of these networks so it can detect long-term relations in time-series data. This could be done with attention models which focus to the most important part of the input. Moreover, there are often seen some approaches where reinforcement learning is combined with RNNs so that model can constantly learn from new data and not just to be based on historical data. <br/>
+This project showed that approach with LSTM recurrent neural networks could have bigger impact in predicting stock prices. However, since trading data is not only dependent on its historical value, but instead on many other factors from real world, these results are not so good. The right data for this kind of prediction should contain newsletter articles that reflects happening in the world, social and policy aspects, sentiment of the environment and many other so it can give accurate results. Also, there are needed some improvements in the architecture of these networks so it can detect long-term relations in time-series data. This could be done with attention models which focus to the most important part of the input. Moreover, there are often seen some approaches where reinforcement learning is combined with RNNs so that model can constantly learn from new data and not just to be based on historical data. <br/><br/>
 To conclude with, LSTM showed that they are the right approach, but it needs enriched data and changed architecture so it can become quite efficient. Anyway, there are plenty of approaches and techniques that should be investigated.
 
