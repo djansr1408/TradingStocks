@@ -54,4 +54,9 @@ Figure 5: Stacked LSTM cells
 Each LSTM cell has dropout wrapper which prevents them from overfitting, as well as L2 regularization. After last cell, simple multiplication of its hidden layer and matrix W is used to give output with proper dimension. Loss is calculated as a mean squared error between targets and predicted values and during training both train and validation loss is observed so to stop before overfitting occurred. The original CLOSE values were split in training (90%) and validation (10%) dataset.
 While tweaking the parameters these were changed: input_length ∈[1,3,5],lstm_size  ∈[50,250,400],num_epochs∈[10,30,50] . Parameter learning_rate has 5e-3 initial value and this is decayed by the factor 0.7 after every 2 epochs. Decreasing of learning_rate through epochs is shown on the Figure 6.
 
-
+<p align="center">
+<img style="float: center;margin:0 auto; " align="center" src="./images/lr.png">   
+<div align="center">
+Figure 6: Learning rate
+</div>
+</p>
