@@ -12,14 +12,14 @@ For this assignment, I will use forecasting strategy combined with deep learning
 In this case, our historical data are prices of a SPY stock from 1st Jan 2010 to 31st Dec 2015. This data contains information for opening, closing, highest and lowest prices for each day, as presented on the Figure 1. In this project, only CLOSE prices were used for prediction and the graphic is showed on Figure 2. This data contains 4025 days for the given period.
 
 <p align="center">
-<img src="./images/data.PNG" >
+<img style="float: center;" align="center" src="./images/data.PNG" >
 Figure 1: Data for period from 1st Jan 2010 to 31st Dec 2015
 </p>
 
 
 <p align="center">
-<img src="./images/datagraphic.png">   
-Figure 2: CLOSE prices data 
+<img style="float: left;margin:0 auto; " align="center" src="./images/datagraphic.png">   
+<div style="float: center;" >Figure 2: CLOSE prices data </div>
 </p>
 
 
