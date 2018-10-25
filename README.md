@@ -13,6 +13,7 @@ In this case, our historical data are prices of a SPY stock from 1st Jan 2010 to
 
 <p align="center">
 <img style="float: center;" align="center" src="./images/data.PNG" >
+
 Figure 1: Data for period from 1st Jan 2010 to 31st Dec 2015
 </p>
 
