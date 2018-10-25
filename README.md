@@ -60,3 +60,55 @@ While tweaking the parameters these were changed: input_length ∈[1,3,5],lstm_s
 Figure 6: Learning rate
 </div>
 </p>
+
+Inputs to the network contains last num_time_steps of grouped values and targets are the next value after these. 
+
+## Trading strategy
+
+I have used very simple trading strategy. Whenever the network predicts that in the future price is going up, I would buy some number of stocks if there is enough money. When the network predicts that price is going down, I would sell all the bought stocks. This is represented with the next equation
+strategy={█(buy,if y_(p(t+n))>y_t@sell all stocks,if y_(p(t+n))≤y_t )┤,
+where y_p represents predicted prices and n is number of days for which to look ahead in the future. This parameter n is changed in range [0,5]. Amount of money when buying stock is fixed to 5000. Even though this value could be variable depending on the predicted value, for simplicity it is taken as a constant. 
+
+## Results
+The network with the biggest profit has parameters: 
+(This doesn’t mean it is the most optimal network, but for the networks that are tried gives the best results) 
+Parameter input_length does not affect the final result significantly. This is mostly used for averaging prices as part of data visualization.
+Parameter lstm_size is quite important so the network can have enough capacity to learn from data. If this parameter is to low, then underfitting could happen. Also, if this parameter is to high, overfitting is possible. In this implementation the best results are for the lstm_size = 250.
+Parameter num_epochs is quite important and overfitting occurs mostly because of its too big value. The one used in the final model is num_epochs = 30.
+Parameter learning_rate is constant for all models and it is as described in previous chapter. 
+On Figure 7 train and validation loss are given. 
+
+<p align="center">
+<img style="float: center;margin:0 auto; " align="center" src="./images/train_val_loss.png">   
+<div align="center">
+Figure 7: Train and validation loss
+</div>
+</p>
+
+On Figure 8 prediction on the validation data is given.
+
+<p align="center">
+<img style="float: center;margin:0 auto; " align="center" src="./images/pred_val.png">   
+<div align="center">
+Figure 8: Averaged predictions on validation data (blue color real values, orange predicted)
+</div>
+</p>
+
+On Figure 9 prediction on the test data from 1st Jan 2016 to 7th Sept 2018 is shown.
+
+<p align="center">
+<img style="float: center;margin:0 auto; " align="center" src="./images/pred_test.png">   
+<div align="center">
+Figure 9: Averaged predictions on test data (blue color real values, red predicted)
+</div>
+</p>
+
+Total profit on the train data + validation data:  750 $
+Total profit on the validation data: -1073 $
+Total profit on the test data: -1192 $
+For all these n = 2 which means how many steps ahead to look for prediction.
+
+## Conclusion
+This project showed that approach with LSTM recurrent neural networks could have bigger impact in predicting stock prices. However, since trading data is not only dependent on its historical value, but instead on many other factors from real world, these results are not so good. The right data for this kind of prediction should contain newsletter articles that reflects happening in the world, social and policy aspects, sentiment of the environment and many other so it can give accurate results. Also, there are needed some improvements in the architecture of these networks so it can detect long-term relations in time-series data. This could be done with attention models which focus to the most important part of the input. Moreover, there are often seen some approaches where reinforcement learning is combined with RNNs so that model can constantly learn from new data and not just to be based on historical data. <br/>
+To conclude with, LSTM showed that they are the right approach, but it needs enriched data and changed architecture so it can become quite efficient. Anyway, there are plenty of approaches and techniques that should be investigated.
+
