@@ -26,6 +26,13 @@ Figure 2: CLOSE prices data
 
 This data should be preprocessed so to put it into the right range. Normalization is problem here because trading data tends to change its statistics (mean, variance) over time, so we can’t simply subtract the mean from this whole dataset and divide it by its variance. Instead, we split the data into adjacent windows of size input_length, and values in each window divide with the value of last sample in previous window. After this, we get normalized data as shown on the Figure 3. On this figure, normalized data is averaged across windows where input_length=3. From this original data 90% is train data and the rest 10% is validation data.
 
+<p align="center">
+<img style="float: center;margin:0 auto; " align="center" src="./images/norm.png">   
+<div align="center">
+Figure 3: Normalized CLOSE prices
+</div>
+</p>
+
 ## Prediction with ML model
 Before choosing the right machine learning model for prediction, I have read some articles so to get sense of what kind of model to use. After this short research, I decided to use LSTM recurrent neural network for prediction. This is one kind of recurrent neural networks which allows working with sequential data and gives quite good results when working with time-series signals. It overcomes some standard problems in vanilla recurrent networks such as vanishing/exploding gradients. This problem occurs when gradient increases to much or decreases to 0, so it can not propagate back through the network and update its parameters. On the other side, LSTM solves this problem with its unique architecture shown on the Figure 4. 
 
