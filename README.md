@@ -24,7 +24,7 @@ Figure 2: CLOSE prices data
 </div>
 </p>
 
-This data should be preprocessed so to put it into the right range. Normalization is problem here because trading data tends to change its statistics (mean, variance) over time, so we can’t simply subtract the mean from this whole dataset and divide it by its variance. Instead, we split the data into adjacent windows of size input_length, and values in each window divide with the value of last sample in previous window. After this, we get normalized data as shown on the Figure 3. On this figure, normalized data is averaged across windows where input_length=3. From this original data 90% is train data and the rest 10% is validation data.
+This data should be preprocessed so to put it into the right range. Normalization is problem here because trading data tends to change its statistics (mean, variance) over time, so we can’t simply subtract the mean from this whole dataset and divide it by its variance. Instead, we split the data into adjacent windows of size *input_length*, and values in each window divide with the value of last sample in previous window. After this, we get normalized data as shown on the Figure 3. On this figure, normalized data is averaged across windows where *input_length=3*. From this original data 90% is train data and the rest 10% is validation data.
 
 <p align="center">
 <img style="float: center;margin:0 auto; " align="center" src="./images/norm.png">   
@@ -45,7 +45,7 @@ Figure 4: LSTM cell
 
 It contains 4 gates (F – forget, I – input, C’ – cell, O - output) which decide how information is passed through the cell. A single LSTM has hidden state (h) and cell state (c). These states store all the logic and memory needed for prediction. <br/>
 <ul>
-<li>Forget gate (F) decides what information will be thrown away from the cell state. Its equation is f_t=σ(W_f∙[h_(t-1),x_t ]+b_f) and depends on previous hidden state h_t and the current input x_t. When f_t is small (close to 0) it will keep this information, otherwise it will reject. </li>
+<li>Forget gate (F) decides which information will be thrown away from the cell state. Its equation is f_t=σ(W_f∙[h_(t-1),x_t ]+b_f) and depends on previous hidden state h_t and the current input x_t. When f_t is small (close to 0) it will keep this information, otherwise it will reject. </li>
 <li>Input gate (I) is given as i_t=σ(W_i∙[h_(t-1),x_t ]+b_i) and decides whether the input will be propagated through the cell and affect the cell hidden state.</li>
 <li>Cell gate (C’) is defined as C_t^'=tanh⁡(W_C∙[h_(t-1),x_t ]+b_C ) and this represents possible new cell values.
 Using last two gates new cell state is specified as C_t=f_t∙C_(t-1)+i_t∙C_t^' </li>
