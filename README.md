@@ -43,20 +43,28 @@ Figure 4: LSTM cell
 </div>
 </p>
 
-It contains 4 gates (F – forget, I – input, C’ – cell, O - output) which decide how information is passed through the cell. A single LSTM has hidden state (h) and cell state (c). These states store all the logic and memory needed for prediction. <br/>
+It contains 4 gates (F – forget, I – input, C’ – cell, O - output) which decide how information is passed through the cell. They are represented as equations (Figure 5.1) with matrices W and U that multiple inputs and hidden state. A single LSTM has hidden state (h) and cell state (c). These states store all the logic and memory needed for prediction. <br/>
 <ul>
-<li>Forget gate (F) decides which information will be thrown away from the cell state. Its equation is f_t=σ(W_f∙[h_(t-1),x_t ]+b_f) and depends on previous hidden state h_t and the current input x_t. When f_t is small (close to 0) it will keep this information, otherwise it will reject. </li>
-<li>Input gate (I) is given as i_t=σ(W_i∙[h_(t-1),x_t ]+b_i) and decides whether the input will be propagated through the cell and affect the cell hidden state.</li>
-<li>Cell gate (C’) is defined as C_t^'=tanh⁡(W_C∙[h_(t-1),x_t ]+b_C ) and this represents possible new cell values.
-Using last two gates new cell state is specified as C_t=f_t∙C_(t-1)+i_t∙C_t^' </li>
-<li>Output gate (O) decides what is going to be on the output.  First, this gate is computed as O_t=σ(W_o∙[h_(t-1),x_t ]+b_o) and it decides how much of a cell state will affect the new hidden state. Therefore, new hidden state is calculated as h_t=O_t∙tanh⁡(C_t ).</li>
+<li>Forget gate (F) decides which information will be thrown away from the cell state. Its equation is f<sub>t</sub> and depends on previous hidden state h<sub>t</sub> and the current input x<sub>t</sub>. When f<sub>t</sub> is small (close to 0) it will keep this information, otherwise it will reject. </li>
+<li>Input gate (I) is given as i<sub>t</sub> and decides whether the input will be propagated through the cell and affect the cell hidden state.</li>
+<li>Cell gate (C’) represents possible new cell values. Using last two gates new cell state is specified as c<sub>t</sub>.</li>
+<li>Output gate (O) decides what is going to be on the output.  First, this gate is computed as o<sub>t</sub> and it decides how much of a cell state will affect the new hidden state. Therefore, new hidden state is calculated as h<sub>t</sub>.</li>
 </ul>
-In this implementation, 3 LSTM cells are stacked in a row and their hidden state size is specified with parameter lstm_size. This is shown on the Figure 5. 
+
+<p align="center">
+<img style="float: center;margin:0 auto; " align="center" src="./images/eqs.png">   
+<div align="center">
+Figure 5.1: Equations for gates F, I, C', O
+</div>
+</p>
+
+
+In this implementation, 3 LSTM cells are stacked in a row and their hidden state size is specified with parameter lstm_size. This is shown on the Figure 5.2. 
 
 <p align="center">
 <img style="float: center;margin:0 auto; " align="center" src="./images/stacked.PNG">   
 <div align="center">
-Figure 5: Stacked LSTM cells
+Figure 5.2: Stacked LSTM cells
 </div>
 </p>
 
